@@ -7,6 +7,7 @@ import ChangelogModal from '../components/ChangelogModal'
 export default function HomeScreen({ onNew, onResume }) {
   const [vistorias, setVistorias] = useState([])
   const [showChangelog, setShowChangelog] = useState(false)
+  const [logoError, setLogoError] = useState(false)
 
   useEffect(() => {
     listVistorias().then(setVistorias).catch(() => {})
@@ -24,8 +25,17 @@ export default function HomeScreen({ onNew, onResume }) {
       <div className="p-6 text-white flex-1 flex flex-col">
         <div className="flex items-start justify-between mb-2">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center overflow-hidden shadow-md">
-              <img src={`${import.meta.env.BASE_URL}sabesp-home.png`} alt="Sabesp" className="w-10 h-10 object-contain" />
+            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center overflow-hidden shadow-md shrink-0">
+              {!logoError ? (
+                <img
+                  src={`${import.meta.env.BASE_URL}sabesp-home.png`}
+                  alt="Sabesp"
+                  className="w-10 h-10 object-contain"
+                  onError={() => setLogoError(true)}
+                />
+              ) : (
+                <span className="text-blue-700 font-black text-xs text-center leading-tight px-1">SAB ESP</span>
+              )}
             </div>
             <div>
               <h1 className="text-xl font-black leading-tight">FCT Vistoria</h1>
@@ -34,7 +44,7 @@ export default function HomeScreen({ onNew, onResume }) {
           </div>
           <button
             onClick={() => setShowChangelog(true)}
-            className="flex flex-col items-center gap-0.5 text-blue-300 hover:text-white transition-colors pt-1"
+            className="flex flex-col items-center gap-0.5 text-blue-300 hover:text-white transition-colors pt-1 shrink-0"
           >
             <History size={20} />
             <span className="text-[10px] font-medium">v1.0.0</span>
@@ -72,7 +82,7 @@ export default function HomeScreen({ onNew, onResume }) {
                     </div>
                     <button
                       onClick={(e) => handleDelete(v.id, e)}
-                      className="ml-2 p-1.5 text-red-300 hover:text-red-100 transition-colors"
+                      className="ml-2 p-1.5 text-red-300 hover:text-red-100 transition-colors shrink-0"
                     >
                       <Trash2 size={16} />
                     </button>
