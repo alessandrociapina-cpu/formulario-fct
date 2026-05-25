@@ -6,6 +6,7 @@ import StepCabecalho from './pages/StepCabecalho'
 import StepFotos from './pages/StepFotos'
 import StepGrupo from './pages/StepGrupo'
 import StepRevisao from './pages/StepRevisao'
+import PainelEstatisticas from './pages/PainelEstatisticas'
 import { GROUPS } from './data/formSchema'
 import { saveVistoria } from './utils/storage'
 
@@ -113,7 +114,11 @@ export default function App() {
   }, [])
 
   if (screen === 'home') {
-    return <HomeScreen onNew={startNew} onResume={resumeVistoria} />
+    return <HomeScreen onNew={startNew} onResume={resumeVistoria} onPainel={() => setScreen('painel')} />
+  }
+
+  if (screen === 'painel') {
+    return <PainelEstatisticas onBack={() => setScreen('home')} />
   }
 
   if (!formState) return null

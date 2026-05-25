@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { PlusCircle, FolderOpen, Trash2, History } from 'lucide-react'
+import { PlusCircle, FolderOpen, Trash2, History, BarChart2 } from 'lucide-react'
 import { listVistorias, deleteVistoria, generateId } from '../utils/storage'
 import InstallPrompt from '../components/InstallPrompt'
 import ChangelogModal from '../components/ChangelogModal'
 
-export default function HomeScreen({ onNew, onResume }) {
+export default function HomeScreen({ onNew, onResume, onPainel }) {
   const [vistorias, setVistorias] = useState([])
   const [showChangelog, setShowChangelog] = useState(false)
   const [logoError, setLogoError] = useState(false)
@@ -58,6 +58,14 @@ export default function HomeScreen({ onNew, onResume }) {
         >
           <PlusCircle size={22} />
           Nova Vistoria FCT
+        </button>
+
+        <button
+          onClick={onPainel}
+          className="w-full flex items-center justify-center gap-3 bg-white/15 text-white font-bold py-3.5 rounded-2xl text-sm hover:bg-white/25 active:scale-95 transition-all touch-manipulation mb-4 border border-white/20"
+        >
+          <BarChart2 size={18} />
+          Painel de Estatísticas
         </button>
 
         {vistorias.length > 0 && (
