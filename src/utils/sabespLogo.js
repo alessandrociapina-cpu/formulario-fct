@@ -1,0 +1,1 @@
+export const SABESP_LOGO_B64 = "placeholder_see_fcr"
