@@ -12,7 +12,7 @@ export default defineConfig({
       manifest: {
         name: 'Formulário de Controle Tecnológico',
         short_name: 'FCT Vistoria',
-        description: 'Aplicativo de vistoria de controle tecnológico em campo',
+        description: 'Aplicativo de vistoria de campo FCT em campo',
         theme_color: '#1e40af',
         background_color: '#f8fafc',
         display: 'standalone',
