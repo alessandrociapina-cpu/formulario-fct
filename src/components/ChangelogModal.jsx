@@ -2,6 +2,16 @@ import { X } from 'lucide-react'
 
 const CHANGELOG = [
   {
+    version: '1.1.0',
+    date: '2026-05-25',
+    changes: [
+      'Correção: desativar "Não houve vistoria neste grupo" restaura as respostas anteriores sem perda de dados',
+      'Novo: botão "N/A todos" em cada subgrupo para marcar todos os itens como N/A rapidamente',
+      'Novo: Painel de Estatísticas — importação de múltiplos JSONs, ranking por contratada, evolução temporal e exportação PDF',
+      'Correção: "CRACHÁ" (item 1.1.3) e separação de Largura / Comprimento da vala em dois campos (7.1.6a e 7.1.6b)',
+    ],
+  },
+  {
     version: '1.0.0',
     date: '2026-05-25',
     changes: [

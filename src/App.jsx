@@ -9,6 +9,7 @@ import StepRevisao from './pages/StepRevisao'
 import PainelEstatisticas from './pages/PainelEstatisticas'
 import { GROUPS } from './data/formSchema'
 import { saveVistoria } from './utils/storage'
+import { getGroupItems } from './utils/scoring'
 
 const TOTAL_STEPS = 10
 
@@ -28,6 +29,7 @@ function emptyState(id) {
     justificativas: {},
     observacoes: {},
     skippedGroups: [],
+    skippedGroupsBackup: {},
   }
 }
 
@@ -57,7 +59,7 @@ export default function App() {
   }
 
   function resumeVistoria(saved) {
-    setFormState({ skippedGroups: [], ...saved })
+    setFormState({ skippedGroups: [], skippedGroupsBackup: {}, ...saved })
     setScreen('form')
   }
 
@@ -104,13 +106,42 @@ export default function App() {
     }))
   }, [])
 
-  const handleSkipGroup = useCallback((groupId, skipped) => {
-    updateState((prev) => ({
-      ...prev,
-      skippedGroups: skipped
-        ? [...(prev.skippedGroups || []).filter((id) => id !== groupId), groupId]
-        : (prev.skippedGroups || []).filter((id) => id !== groupId),
-    }))
+  const handleSkipGroup = useCallback((groupId, isSkipping) => {
+    updateState((prev) => {
+      const group = GROUPS.find((g) => g.id === groupId)
+      const allItems = group ? getGroupItems(group) : []
+      const newAnswers = { ...prev.answers }
+      const backup = prev.skippedGroupsBackup || {}
+
+      if (isSkipping) {
+        const savedAnswers = {}
+        allItems.forEach((item) => {
+          if (item.type === 'eval') {
+            savedAnswers[item.id] = prev.answers[item.id] ?? null
+            newAnswers[item.id] = 'X'
+          }
+        })
+        return {
+          ...prev,
+          skippedGroups: [...(prev.skippedGroups || []).filter((id) => id !== groupId), groupId],
+          answers: newAnswers,
+          skippedGroupsBackup: { ...backup, [groupId]: savedAnswers },
+        }
+      } else {
+        const saved = backup[groupId] || {}
+        allItems.forEach((item) => {
+          if (item.type === 'eval') newAnswers[item.id] = saved[item.id] ?? null
+        })
+        const newBackup = { ...backup }
+        delete newBackup[groupId]
+        return {
+          ...prev,
+          skippedGroups: (prev.skippedGroups || []).filter((id) => id !== groupId),
+          answers: newAnswers,
+          skippedGroupsBackup: newBackup,
+        }
+      }
+    })
   }, [])
 
   if (screen === 'home') {

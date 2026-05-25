@@ -1,6 +1,6 @@
 import EvalItem from '../components/EvalItem'
 import ScoreBar from '../components/ScoreBar'
-import { calcGroupScore, getGroupItems } from '../utils/scoring'
+import { calcGroupScore } from '../utils/scoring'
 import { SkipForward } from 'lucide-react'
 
 const colorMap = {
@@ -18,12 +18,7 @@ export default function StepGrupo({ group, answers, justificativas, observacoes,
   const colors = colorMap[group.color] || colorMap.blue
 
   function handleSkipToggle() {
-    const newSkipped = !skipped
-    onSkip(group.id, newSkipped)
-    const allItems = getGroupItems(group)
-    allItems.forEach((item) => {
-      if (item.type === 'eval') onChange(item.id, newSkipped ? 'X' : null)
-    })
+    onSkip(group.id, !skipped)
   }
 
   return (
@@ -64,8 +59,14 @@ export default function StepGrupo({ group, answers, justificativas, observacoes,
           {group.subgroups ? (
             group.subgroups.map((sg) => (
               <div key={sg.id}>
-                <div className={`px-4 py-2.5 border-y border-l-4 ${colors.sgBorder} ${colors.sgBg}`}>
-                  <p className={`text-xs font-bold ${colors.sgText}`}>{sg.label}</p>
+                <div className={`px-4 py-2.5 border-y border-l-4 ${colors.sgBorder} ${colors.sgBg} flex items-center justify-between gap-2`}>
+                  <p className={`text-xs font-bold ${colors.sgText} flex-1 min-w-0`}>{sg.label}</p>
+                  <button
+                    onClick={() => sg.items.forEach((item) => { if (item.type === 'eval') onChange(item.id, 'X') })}
+                    className={`shrink-0 text-[10px] font-bold px-2 py-0.5 rounded-full border ${colors.sgBorder} ${colors.sgText} opacity-60 hover:opacity-100 transition-opacity`}
+                  >
+                    N/A todos
+                  </button>
                 </div>
                 <div className="divide-y divide-slate-50">
                   {sg.items.map((item) => (
