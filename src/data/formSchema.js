@@ -31,7 +31,7 @@ export const GROUPS = [
         items: [
           { id: '1.1.1', text: 'TODOS OS EMPREGADOS PRESENTES ESTÃO REGISTRADOS NO WEHANDLE?', peso: 3, type: 'eval' },
           { id: '1.1.2', text: 'INFORME A QUANTIDADE DE FUNCIONÁRIOS NA EQUIPE', peso: 0, type: 'info' },
-          { id: '1.1.3', text: 'TODOS OS FUNCIONÁRIOS ESTÃO IDENTIFICADOS POR CRAC HÁ E UNIFORME?', peso: 3, type: 'eval' },
+          { id: '1.1.3', text: 'TODOS OS FUNCIONÁRIOS ESTÃO IDENTIFICADOS POR CRACHÁ E UNIFORME?', peso: 3, type: 'eval' },
           { id: '1.1.4', text: 'TODOS OS FUNCIONÁRIOS ESTÃO USANDO EPIS (BOTA, CAPACETE, LUVAS, ÓCULOS, OUTROS)?', peso: 3, type: 'eval' },
           { id: '1.1.5', text: 'TODOS OS FUNCIONÁRIOS ESTÃO BEM APRESENTADOS (NÃO ALCOOLIZADOS, LIMPOS, ETC)?', peso: 3, type: 'eval' },
           { id: '1.1.6', text: 'É CONFIRMADA A AUSÊNCIA DE TRABALHO INFANTIL NO LOCAL DE FISCALIZAÇÃO?', peso: 3, type: 'eval' },
@@ -421,7 +421,8 @@ export const GROUPS = [
           { id: '7.1.3', text: 'BINDER - COMPACTAÇÃO E ESPESSURA ADEQUADAS', peso: 2, type: 'eval' },
           { id: '7.1.4', text: 'FOI EXECUTADA A SELAGEM DE BASE?', peso: 2, type: 'eval' },
           { id: '7.1.5', text: 'APLICAÇÃO DA INSCRIÇÃO "PAVIMENTO PROVISÓRIO SABESP"', peso: 2, type: 'eval' },
-          { id: '7.1.6', text: 'INFORME AS DIMENSÕES DA VALA - LARGURA X COMPRIMENTO (M)', peso: 2, type: 'eval' },
+          { id: '7.1.6a', text: 'DIMENSÕES DA VALA - LARGURA (M)', peso: 0, type: 'info' },
+          { id: '7.1.6b', text: 'DIMENSÕES DA VALA - COMPRIMENTO (M)', peso: 0, type: 'info' },
           { id: '7.1.7', text: 'A REPOSIÇÃO EXECUTADA ATENDE ÀS NORMAS MUNICIPAIS?', peso: 4, type: 'eval' },
         ],
       },
