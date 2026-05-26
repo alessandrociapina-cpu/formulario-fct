@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/formulario-fct/favicon.svg" />
+    <link rel="apple-touch-icon" href="/formulario-fct/icons/pwa-192x192.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#1e40af" />
+    <meta name="description" content="FCT Vistoria — Formulário de Controle Tecnológico da Sabesp. Funciona offline." />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FCT Vistoria" />
+    <title>FCT — Vistoria de Campo</title>
+    <!-- Captura o evento de instalação antes do React carregar -->
+    <script>
+      window.__pwaPrompt = null;
+      window.addEventListener('beforeinstallprompt', function (e) {
+        e.preventDefault();
+        window.__pwaPrompt = e;
+      });
+    </script>
+    <script type="module" crossorigin src="/formulario-fct/assets/index-ltDL5fFW.js"></script>
+    <link rel="stylesheet" crossorigin href="/formulario-fct/assets/index-BJkpe8Cv.css">
+  <link rel="manifest" href="/formulario-fct/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/formulario-fct/registerSW.js"></script></head>
+  <body class="bg-slate-100">
+    <div id="root"></div>
+  </body>
+</html>
