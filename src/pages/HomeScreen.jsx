@@ -34,7 +34,7 @@ export default function HomeScreen({ onNew, onResume, onPainel }) {
                   onError={() => setLogoError(true)}
                 />
               ) : (
-                <span className="text-blue-700 font-black text-xs text-center leading-tight px-1">SAB ESP</span>
+                <span className="text-blue-700 font-black text-xs text-center leading-tight px-1">SAB ESP</span>
               )}
             </div>
             <div>
