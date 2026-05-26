@@ -9,9 +9,9 @@ export default function StepIndicator({ currentStep, onNavigate, answers }) {
           const isActive = i === currentStep
           const isDone = i < currentStep
           let groupScore = null
-          // Steps 2-8 correspond to groups 1-7
-          if (i >= 2 && i <= 8) {
-            groupScore = calcGroupScore(i - 1, answers)
+          // Steps 3-9 correspond to groups 1-7
+          if (i >= 3 && i <= 9) {
+            groupScore = calcGroupScore(i - 2, answers)
           }
           return (
             <button key={i} onClick={() => onNavigate(i)} className={`flex flex-col items-center px-2.5 py-2 min-w-[60px] transition-colors touch-manipulation ${isActive ? 'border-b-2 border-blue-600 text-blue-700' : isDone ? 'text-slate-500' : 'text-slate-400'}`}>

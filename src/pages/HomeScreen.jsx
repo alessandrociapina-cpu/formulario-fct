@@ -47,7 +47,7 @@ export default function HomeScreen({ onNew, onResume, onPainel }) {
             className="flex flex-col items-center gap-0.5 text-blue-300 hover:text-white transition-colors pt-1 shrink-0"
           >
             <History size={20} />
-            <span className="text-[10px] font-medium">v1.1.0</span>
+            <span className="text-[10px] font-medium">v1.2.0</span>
           </button>
         </div>
         <p className="text-blue-300 text-xs mb-6 mt-2">Funciona offline · PDF + JSON gerados no dispositivo</p>

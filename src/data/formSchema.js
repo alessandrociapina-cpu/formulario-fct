@@ -501,4 +501,35 @@ export const GROUPS = [
   },
 ]
 
-export const STEP_LABELS = ['Cabeçalho', 'Fotos', 'Equipes', 'Valas', 'Ligações', 'Reparos', 'Reaterro', 'Leito', 'Pavim.', 'Revisão']
+export const SERVICES = [
+  { id: 'ligacao_agua',          label: 'Ligação de Água',                    category: 'Ligações e Conexões',   subgroups: ['3.1'] },
+  { id: 'cavalete_hidrometro',   label: 'Troca de Cavalete / Hidrômetro',     category: 'Ligações e Conexões',   subgroups: ['3.2', '3.3'] },
+  { id: 'ligacao_esgoto',        label: 'Ligação de Esgoto',                  category: 'Ligações e Conexões',   subgroups: ['3.4'] },
+  { id: 'supressao',             label: 'Supressão',                          category: 'Ligações e Conexões',   subgroups: ['3.6'] },
+  { id: 'assentamento_rede',     label: 'Assentamento de Rede',               category: 'Ligações e Conexões',   subgroups: ['3.5'] },
+  { id: 'teste_estanqueidade',   label: 'Teste de Estanqueidade',             category: 'Ligações e Conexões',   subgroups: ['3.7'] },
+  { id: 'reparo_ramal_agua',     label: 'Reparo de Ramal / Rede de Água',     category: 'Reparos',               subgroups: ['4.2'] },
+  { id: 'reparo_ramal_esgoto',   label: 'Reparo de Ramal / Rede de Esgoto',  category: 'Reparos',               subgroups: ['4.3'] },
+  { id: 'reparo_pv_pi',          label: 'Reparo de PV / PI',                  category: 'Reparos',               subgroups: ['4.1'] },
+  { id: 'veiculos_pesados',      label: 'Veículos Pesados',                   category: 'Equipamentos Especiais', subgroups: ['1.4'] },
+  { id: 'desobstrucao',          label: 'Veículos de Desobstrução',           category: 'Equipamentos Especiais', subgroups: ['1.5'] },
+  { id: 'sewer_jet',             label: 'Sewer Jet',                          category: 'Equipamentos Especiais', subgroups: ['1.6'] },
+  { id: 'equip_combinado',       label: 'Equipamento Combinado',              category: 'Equipamentos Especiais', subgroups: ['1.7'] },
+  { id: 'sewer_roder',           label: 'Sewer Roder',                        category: 'Equipamentos Especiais', subgroups: ['1.8'] },
+  { id: 'flex_cleaner',          label: 'Flex Cleaner',                       category: 'Equipamentos Especiais', subgroups: ['1.9'] },
+  { id: 'abertura_vala',         label: 'Abertura de Vala',                   category: 'Obras Civis',           subgroups: ['2.1'] },
+  { id: 'assentamento_direcional', label: 'Assentamento / Direcional',        category: 'Obras Civis',           subgroups: ['2.2'] },
+  { id: 'reaterro',              label: 'Reaterro',                           category: 'Obras Civis',           subgroups: ['5.1'] },
+  { id: 'leito_nao_pav',         label: 'Leito Carroçável Não Pavimentado',   category: 'Obras Civis',           subgroups: ['6.1'] },
+  { id: 'pavimentacao_geral',    label: 'Pavimentação Geral',                 category: 'Pavimentação',          subgroups: ['7.1'] },
+  { id: 'pav_concreto',          label: 'Base de Concreto',                   category: 'Pavimentação',          subgroups: ['7.2'] },
+  { id: 'pav_bloco',             label: 'Paralelepípedo / Bloco',             category: 'Pavimentação',          subgroups: ['7.3'] },
+  { id: 'reposicao_passeio',     label: 'Reposição de Passeio',               category: 'Pavimentação',          subgroups: ['7.4'] },
+  { id: 'capa_asfaltica',        label: 'Capa Asfáltica',                     category: 'Pavimentação',          subgroups: ['7.5'] },
+  { id: 'ladrilho',              label: 'Ladrilho Hidráulico',                category: 'Pavimentação',          subgroups: ['7.6'] },
+  { id: 'mosaico_pedra',         label: 'Mosaico / Pedra',                    category: 'Pavimentação',          subgroups: ['7.7'] },
+]
+
+export const SERVICE_SUBGROUP_IDS = new Set(SERVICES.flatMap(s => s.subgroups))
+
+export const STEP_LABELS = ['Serviços', 'Cabeçalho', 'Fotos', 'Equipes', 'Valas', 'Ligações', 'Reparos', 'Reaterro', 'Leito', 'Pavim.', 'Revisão']

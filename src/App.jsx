@@ -2,6 +2,7 @@ import { useState, useCallback, useRef } from 'react'
 import { ArrowLeft, ArrowRight, ChevronLeft } from 'lucide-react'
 import StepIndicator from './components/StepIndicator'
 import HomeScreen from './pages/HomeScreen'
+import StepServicos from './pages/StepServicos'
 import StepCabecalho from './pages/StepCabecalho'
 import StepFotos from './pages/StepFotos'
 import StepGrupo from './pages/StepGrupo'
@@ -11,12 +12,13 @@ import { GROUPS } from './data/formSchema'
 import { saveVistoria } from './utils/storage'
 import { getGroupItems } from './utils/scoring'
 
-const TOTAL_STEPS = 10
+const TOTAL_STEPS = 11
 
 function emptyState(id) {
   return {
     vistoriaId: id,
     currentStep: 0,
+    selectedServices: [],
     cabecalho: {
       contrato_fiscalizada: '', num_amostra: '', unidade_executante: '',
       contrato_fiscalizadora: '', tss: '', equipe_fiscalizada: '',
@@ -59,7 +61,7 @@ export default function App() {
   }
 
   function resumeVistoria(saved) {
-    setFormState({ skippedGroups: [], skippedGroupsBackup: {}, ...saved })
+    setFormState({ selectedServices: [], skippedGroups: [], skippedGroupsBackup: {}, ...saved })
     setScreen('form')
   }
 
@@ -70,6 +72,10 @@ export default function App() {
 
   function nextStep() { goStep(Math.min(formState.currentStep + 1, TOTAL_STEPS - 1)) }
   function prevStep() { goStep(Math.max(formState.currentStep - 1, 0)) }
+
+  const handleServicesChange = useCallback((services) => {
+    updateState({ selectedServices: services })
+  }, [])
 
   const handleCabecalhoChange = useCallback((field, value) => {
     updateState((prev) => ({ ...prev, cabecalho: { ...prev.cabecalho, [field]: value } }))
@@ -161,8 +167,15 @@ export default function App() {
   function renderStep() {
     switch (currentStep) {
       case 0:
-        return <StepCabecalho cabecalho={formState.cabecalho} onChange={handleCabecalhoChange} />
+        return (
+          <StepServicos
+            selectedServices={formState.selectedServices || []}
+            onChange={handleServicesChange}
+          />
+        )
       case 1:
+        return <StepCabecalho cabecalho={formState.cabecalho} onChange={handleCabecalhoChange} />
+      case 2:
         return (
           <StepFotos
             fotos={formState.fotos}
@@ -171,14 +184,14 @@ export default function App() {
             onGpsDetected={handleGpsDetected}
           />
         )
-      case 2:
       case 3:
       case 4:
       case 5:
       case 6:
       case 7:
-      case 8: {
-        const group = GROUPS[currentStep - 2]
+      case 8:
+      case 9: {
+        const group = GROUPS[currentStep - 3]
         return (
           <StepGrupo
             group={group}
@@ -190,10 +203,11 @@ export default function App() {
             onObs={handleObsChange}
             skipped={(formState.skippedGroups || []).includes(group.id)}
             onSkip={handleSkipGroup}
+            selectedServices={formState.selectedServices || []}
           />
         )
       }
-      case 9:
+      case 10:
         return <StepRevisao state={formState} />
       default:
         return null

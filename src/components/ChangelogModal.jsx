@@ -2,6 +2,16 @@ import { X } from 'lucide-react'
 
 const CHANGELOG = [
   {
+    version: '1.2.0',
+    date: '2026-05-26',
+    changes: [
+      'Novo: tela "Serviços" (step 0) — seleção dos serviços a fiscalizar antes do preenchimento',
+      'Novo: subgrupos não relacionados ao serviço selecionado aparecem colapsados por padrão',
+      'Melhoria: cabeçalho dos subgrupos maior, com chevron de colapso e indicação "não selecionado"',
+      'Melhoria: botão "N/A todos" reposicionado e destacado no cabeçalho de cada subgrupo',
+    ],
+  },
+  {
     version: '1.1.0',
     date: '2026-05-25',
     changes: [
